@@ -6,25 +6,31 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
+using System.Media;
+using System.Threading;
 
 namespace SimonSays
 {
     public partial class MenuScreen : UserControl
     {
+        SoundPlayer background = new SoundPlayer(Properties.Resources.theme);
+     
         public MenuScreen()
         {
+            background.Play();
             InitializeComponent();
         }
-
         private void newButton_Click(object sender, EventArgs e)
         {
-            //TODO: remove this screen and start the GameScreen
+            background.Stop();
+    
+            Form1.ChangeScreen(this, new GameScreen());
+           
         }
-
-
         private void exitButton_Click(object sender, EventArgs e)
         {
-            //TODO: end the application
+           Application.Exit();  
         }
     }
 }
